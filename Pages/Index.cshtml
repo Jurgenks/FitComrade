@@ -2,11 +2,31 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    
 }
-
 <div class="text-center">
     <h1 class="display-4">Welkom Comrade</h1>
     <p>FitComrade is het nieuwe fitness platform.</p>
+    
 </div>
 
+<body>
 
+    <h2>Login</h2>
+
+    @Html.BeginForm("Login", "HomeController", FormMethod.Post){
+    @Html.TextBoxFor(userlogin => userlogin.UserName);
+    @Html.TextBoxFor(userlogin => userlogin.Password);
+    <input type="submit" value="Login" />
+    }
+
+    <h2>Register</h2>
+
+    @Html.BeginForm("Register", "HomeController", FormMethod.Post){
+    @Html.TextBoxFor(userlogin => userlogin.UserName);
+    @Html.TextBoxFor(userlogin => userlogin.Password);
+    <input type="submit" value="Register" />
+    }
+
+
+</body>

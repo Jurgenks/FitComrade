@@ -15,5 +15,9 @@ namespace FitComrade.Data
         }
 
         public DbSet<FitComrade.Models.Person> Person { get; set; }
+
+        public DbSet<FitComrade.Models.Accounts> Accounts { get; set; }
+
+        
     }
 }
