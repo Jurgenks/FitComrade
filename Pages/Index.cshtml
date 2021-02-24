@@ -1,5 +1,6 @@
 ﻿@page
 @model IndexModel
+@using FitComrade.Models;
 @{
     ViewData["Title"] = "Home page";
     
@@ -10,23 +11,6 @@
     
 </div>
 
-<body>
-
-    <h2>Login</h2>
-
-    @Html.BeginForm("Login", "HomeController", FormMethod.Post){
-    @Html.TextBoxFor(userlogin => userlogin.UserName);
-    @Html.TextBoxFor(userlogin => userlogin.Password);
-    <input type="submit" value="Login" />
-    }
-
-    <h2>Register</h2>
-
-    @Html.BeginForm("Register", "HomeController", FormMethod.Post){
-    @Html.TextBoxFor(userlogin => userlogin.UserName);
-    @Html.TextBoxFor(userlogin => userlogin.Password);
-    <input type="submit" value="Register" />
-    }
 
 
-</body>
+

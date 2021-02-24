@@ -9,7 +9,7 @@ namespace FitComrade.Pages
     public class IndexModel : PageModel
     {
         
-        public string UserName, Password;
+        
         
 
 

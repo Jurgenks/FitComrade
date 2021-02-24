@@ -9,6 +9,10 @@ namespace FitComrade.Data
 {
     public class FitComradeContext : DbContext
     {
+        public FitComradeContext()
+        {
+        }
+
         public FitComradeContext (DbContextOptions<FitComradeContext> options)
             : base(options)
         {
@@ -16,7 +20,9 @@ namespace FitComrade.Data
 
         public DbSet<FitComrade.Models.Person> Person { get; set; }
 
-        public DbSet<FitComrade.Models.Accounts> Accounts { get; set; }
+        
+
+        public DbSet<FitComrade.Models.RegisterModel> RegisterModel { get; set; }
 
         
     }

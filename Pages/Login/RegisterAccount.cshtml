@@ -1,0 +1,49 @@
+﻿@page
+@model FitComrade.Pages.Login.RegisterAccountModel
+
+@{
+    ViewData["Title"] = "RegisterAccount";
+}
+
+<h1>Sign Up Account</h1>
+
+<h4>Bij aanmelding ontvangt u een bevestigingsmail.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RegisterModel.UserName" class="control-label"></label>
+                <input asp-for="RegisterModel.UserName" class="form-control" />
+                <span asp-validation-for="RegisterModel.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterModel.Email" class="control-label"></label>
+                <input asp-for="RegisterModel.Email" class="form-control" />
+                <span asp-validation-for="RegisterModel.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterModel.Password" class="control-label"></label>
+                <input asp-for="RegisterModel.Password" class="form-control" />
+                <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisterModel.ConfirmPassword" class="control-label"></label>
+                <input asp-for="RegisterModel.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="RegisterModel.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Ga terug</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
