@@ -178,3 +178,5 @@ C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWeb
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Login\RegisterAccount.cshtml.g.cs
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Login\Index.cshtml.g.cs
+C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Login\LoginAccount.cshtml.g.cs
+C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Account\Index.cshtml.g.cs

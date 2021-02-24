@@ -7,26 +7,25 @@ namespace FitComrade.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "RegisterModel",
+                name: "LogOnModel",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    ConfirmPassword = table.Column<string>(nullable: true)
+                    RememberMe = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegisterModel", x => x.ID);
+                    table.PrimaryKey("PK_LogOnModel", x => x.ID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RegisterModel");
+                name: "LogOnModel");
         }
     }
 }

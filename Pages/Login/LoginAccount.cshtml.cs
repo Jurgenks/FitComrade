@@ -10,11 +10,11 @@ using FitComrade.Models;
 
 namespace FitComrade.Pages.Login
 {
-    public class RegisterAccountModel : PageModel
+    public class LoginAccountModel : PageModel
     {
         private readonly FitComrade.Data.FitComradeContext _context;
 
-        public RegisterAccountModel(FitComrade.Data.FitComradeContext context)
+        public LoginAccountModel(FitComrade.Data.FitComradeContext context)
         {
             _context = context;
         }
@@ -25,9 +25,8 @@ namespace FitComrade.Pages.Login
         }
 
         [BindProperty]
-        public RegisterModel RegisterModel { get; set; }
-        private LogOnModel LogOnModel = new LogOnModel();
-
+        public LogOnModel LogOnModel { get; set; }
+        
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -36,14 +35,18 @@ namespace FitComrade.Pages.Login
             {
                 return Page();
             }
-            LogOnModel.UserName = RegisterModel.UserName;
-            LogOnModel.Password = RegisterModel.Password;
-            _context.LogOnModel.Add(LogOnModel);
 
-            _context.RegisterModel.Add(RegisterModel);
-            await _context.SaveChangesAsync();
+            
+            var data = _context.LogOnModel.Where(s => s.UserName.Equals(LogOnModel.UserName) && s.Password.Equals(LogOnModel.Password)).ToList();
+            if (data.Count() > 0)
+            {
+                
+                return RedirectToPage("/Account/Index");
+            }
 
-            return RedirectToPage("./Index");
+            await _context.DisposeAsync();
+
+            return Page();
         }
     }
 }

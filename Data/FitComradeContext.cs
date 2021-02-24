@@ -20,9 +20,9 @@ namespace FitComrade.Data
 
         public DbSet<FitComrade.Models.Person> Person { get; set; }
 
-        
-
         public DbSet<FitComrade.Models.RegisterModel> RegisterModel { get; set; }
+
+        public DbSet<FitComrade.Models.LogOnModel> LogOnModel { get; set; }
 
         
     }

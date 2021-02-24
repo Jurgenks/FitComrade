@@ -8,6 +8,7 @@ namespace FitComrade.Models
 {
     public class LogOnModel
     {
+        public int ID { get; set; }
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
