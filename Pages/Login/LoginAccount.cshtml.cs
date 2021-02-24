@@ -26,7 +26,7 @@ namespace FitComrade.Pages.Login
 
         [BindProperty]
         public LogOnModel LogOnModel { get; set; }
-        
+        public static bool SignedIn = false;
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -40,7 +40,7 @@ namespace FitComrade.Pages.Login
             var data = _context.LogOnModel.Where(s => s.UserName.Equals(LogOnModel.UserName) && s.Password.Equals(LogOnModel.Password)).ToList();
             if (data.Count() > 0)
             {
-                
+                SignedIn = true;
                 return RedirectToPage("/Account/Index");
             }
 
