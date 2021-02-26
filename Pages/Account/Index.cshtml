@@ -3,3 +3,14 @@
 @{
     ViewData["Title"] = "Account";
 }
+<body>
+    @{
+        @using Login
+        if (LoginAccountModel.SignedIn == true && LoginAccountModel.account == "Jurgen")
+        {
+            <a asp-page="ProductManager/Index">ProductManager</a>
+        }
+    }
+</body>
+
+

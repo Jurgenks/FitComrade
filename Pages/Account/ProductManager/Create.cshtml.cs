@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using FitComrade.Data;
 using FitComrade.Models;
 
-namespace FitComrade.Pages.Login
+namespace FitComrade.Pages.Account.ProductManager
 {
-    public class LoginAccountModel : PageModel
+    public class CreateModel : PageModel
     {
         private readonly FitComrade.Data.FitComradeContext _context;
 
-        public LoginAccountModel(FitComrade.Data.FitComradeContext context)
+        public CreateModel(FitComrade.Data.FitComradeContext context)
         {
             _context = context;
         }
@@ -25,9 +25,8 @@ namespace FitComrade.Pages.Login
         }
 
         [BindProperty]
-        public LogOnModel LogOnModel { get; set; }
-        public static bool SignedIn = false;
-        public static string account;
+        public Products Products { get; set; }
+
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -37,18 +36,10 @@ namespace FitComrade.Pages.Login
                 return Page();
             }
 
-            
-            var data = _context.RegisterModel.Where(s => s.UserName.Equals(LogOnModel.UserName) && s.Password.Equals(LogOnModel.Password)).ToList();
-            if (data.Count() > 0)
-            {
-                SignedIn = true;
-                account = LogOnModel.UserName;
-                return RedirectToPage("/Account/Index");
-            }
+            _context.Products.Add(Products);
+            await _context.SaveChangesAsync();
 
-            await _context.DisposeAsync();
-
-            return Page();
+            return RedirectToPage("./Index");
         }
     }
 }

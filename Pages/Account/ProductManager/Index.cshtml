@@ -1,0 +1,73 @@
+﻿@page
+@model FitComrade.Pages.Account.ProductManager.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-page="Create">Add Product</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Store)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].BuyPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].SellPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Priority)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Products) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Wijzig</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Verwijder</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

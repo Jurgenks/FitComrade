@@ -26,7 +26,7 @@ namespace FitComrade.Pages.Login
 
         [BindProperty]
         public RegisterModel RegisterModel { get; set; }
-        private LogOnModel LogOnModel = new LogOnModel();
+        
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -36,14 +36,16 @@ namespace FitComrade.Pages.Login
             {
                 return Page();
             }
-            LogOnModel.UserName = RegisterModel.UserName;
-            LogOnModel.Password = RegisterModel.Password;
-            _context.LogOnModel.Add(LogOnModel);
+            var data = _context.RegisterModel.Where(s => s.UserName.Equals(RegisterModel.UserName) || s.Email.Equals(RegisterModel.Email)).ToList();
+            if(data.Count() > 0)
+            {
+                return Page();
+            }
 
             _context.RegisterModel.Add(RegisterModel);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./LoginAccount");
         }
     }
 }

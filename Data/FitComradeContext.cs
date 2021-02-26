@@ -24,6 +24,8 @@ namespace FitComrade.Data
 
         public DbSet<FitComrade.Models.LogOnModel> LogOnModel { get; set; }
 
+        public DbSet<FitComrade.Models.Products> Products { get; set; }
+
         
     }
 }

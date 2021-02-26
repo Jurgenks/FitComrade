@@ -1,0 +1,64 @@
+﻿@page
+@model FitComrade.Pages.Account.ProductManager.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Products.ProductName" class="control-label"></label>
+                <input asp-for="Products.ProductName" class="form-control" />
+                <span asp-validation-for="Products.ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.Store" class="control-label"></label>
+                <input asp-for="Products.Store" class="form-control" />
+                <span asp-validation-for="Products.Store" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.BuyPrice" class="control-label"></label>
+                <input asp-for="Products.BuyPrice" class="form-control" />
+                <span asp-validation-for="Products.BuyPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.SellPrice" class="control-label"></label>
+                <input asp-for="Products.SellPrice" class="form-control" />
+                <span asp-validation-for="Products.SellPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.ReleaseDate" class="control-label"></label>
+                <input asp-for="Products.ReleaseDate" class="form-control" />
+                <span asp-validation-for="Products.ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.Category" class="control-label"></label>
+                <input asp-for="Products.Category" class="form-control" />
+                <span asp-validation-for="Products.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Products.Priority" class="control-label"></label>
+                <input asp-for="Products.Priority" class="form-control" />
+                <span asp-validation-for="Products.Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
