@@ -49,6 +49,7 @@ namespace FitComrade.Pages.Login
             await _context.DisposeAsync();
 
             return Page();
+
         }
     }
 }
