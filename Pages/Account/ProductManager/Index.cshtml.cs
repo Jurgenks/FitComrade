@@ -28,7 +28,7 @@ namespace FitComrade.Pages.Account.ProductManager
             
             if (LoginAccountModel.account != "Jurgen")
             {
-                Redirect("Account/Account");
+                RedirectToPage("Account/Index");
             }
         }
         

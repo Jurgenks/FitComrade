@@ -44,9 +44,13 @@
                                 PageUrl = "/Login/Index";
                                 Header = "Sign In";
                             }
+                            
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page=@PageUrl>@Header</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Login/Logout">Log uit</a>
                         </li>
                     </ul>
                 </div>
