@@ -24,12 +24,13 @@ namespace FitComrade.Pages.Account.ProductManager
 
         public async Task OnGetAsync()
         {
-            Products = await _context.Products.ToListAsync();
-            
             if (LoginAccountModel.account != "Jurgen")
             {
                 RedirectToPage("Account/Index");
             }
+            Products = await _context.Products.ToListAsync();
+            
+            
         }
         
     }

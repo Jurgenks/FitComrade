@@ -1,0 +1,36 @@
+﻿@page
+@model FitComrade.Pages.Shop.IndexModel
+@{
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <h3>Product List</h3>
+    <table class="table">
+        <tr>
+            <th>Nr.</th>
+            <th>Product</th>
+            <th>Foto</th>
+            <th>Prijs</th>
+            
+        </tr>
+        @foreach (var product in Model.Products)
+        {
+            <tr >
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td><img src="~/images/@product.Photo" width="120" height="100" /></td>
+                <td>$@product.Price</td>
+                <td>
+                    <a asp-page="cart" asp-page-handler="buynow" asp-route-id="@product.Id">Buy Now</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

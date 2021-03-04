@@ -26,7 +26,7 @@ namespace FitComrade
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-
+            services.AddSession();
             services.AddDbContext<FitComradeContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("FitComradeContext")));
         }
@@ -47,7 +47,7 @@ namespace FitComrade
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

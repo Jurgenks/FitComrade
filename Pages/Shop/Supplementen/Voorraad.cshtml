@@ -1,0 +1,78 @@
+﻿@page
+@model FitComrade.Pages.Supplementen.VoorraadModel
+
+@{
+    ViewData["Title"] = "Voorraad";
+
+}
+
+<h1>Voorraad</h1>
+
+<form>
+    <p>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nr.
+            </th>
+            <th>
+                Product
+            </th>
+            <th>
+                Aanwezig aantal
+            </th>
+            <th>
+                Prijs
+            </th>
+
+            <th>
+                Datum verschijning
+            </th>
+            <th>
+                Categorie
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store)
+                </td>
+
+                <td>
+                    €@Html.DisplayFor(modelItem => item.SellPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <a asp-page="cart" asp-page-handler="buynow" asp-route-id="@item.ID">Buy Now</a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a asp-page="~/Account/ShoppingBag/ShoppingCartPage">Ga naar winkelmand</a>
+
+
+

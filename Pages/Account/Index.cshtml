@@ -2,15 +2,17 @@
 @model FitComrade.Pages.Account.IndexModel
 @{
     ViewData["Title"] = "Account";
+    @using Login
 }
 <body>
-    @{
-        @using Login
-        if (LoginAccountModel.SignedIn == true && LoginAccountModel.account == "Jurgen")
-        {
-            <a asp-page="ProductManager/Index">ProductManager</a>
-        }
-    }
+    <h2>Welkom @LoginAccountModel.account</h2>
+
+    
+        <h3>@{if (LoginAccountModel.account == "Jurgen"){<a asp-page="ProductManager/Index">ProductManager</a>}}</h3>
+        <h3><a asp-page="Orders/Invoice">Bestellingen</a></h3>
+
+    
+
 </body>
 
 
