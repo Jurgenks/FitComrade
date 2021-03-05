@@ -41,7 +41,9 @@ namespace FitComrade.Pages.Login
             {
                 return Page();
             }
+            
 
+            
             _context.RegisterModel.Add(RegisterModel);
             await _context.SaveChangesAsync();
 

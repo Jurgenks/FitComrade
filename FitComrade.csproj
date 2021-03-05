@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Pages\Account\AccountManager\" />
     <Folder Include="Pages\Account\Orders\" />
   </ItemGroup>
 

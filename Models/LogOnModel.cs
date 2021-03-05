@@ -20,5 +20,7 @@ namespace FitComrade.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        
+        public bool FailedLogin { get; set; }
     }
 }

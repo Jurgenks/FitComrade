@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FitComrade.Data;
 using FitComrade.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitComrade.Pages.Login
 {
     public class LoginAccountModel : PageModel
     {
         private readonly FitComrade.Data.FitComradeContext _context;
-
+        
         public LoginAccountModel(FitComrade.Data.FitComradeContext context)
         {
             _context = context;
@@ -28,28 +29,45 @@ namespace FitComrade.Pages.Login
         public LogOnModel LogOnModel { get; set; }
         public static bool SignedIn = false;
         public static string account;
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://aka.ms/RazorPagesCRUD.
+
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                
                 return Page();
             }
 
+            var attempt = _context.LogOnModel.Where(s => s.UserName.Equals(LogOnModel.UserName)).ToList();
             
             var data = _context.RegisterModel.Where(s => s.UserName.Equals(LogOnModel.UserName) && s.Password.Equals(LogOnModel.Password)).ToList();
+
             if (data.Count() > 0)
             {
+                if(attempt.Count() == 0)
+                {
+                    LogOnModel.Password = "****";
+                    _context.Add(LogOnModel);
+                    await _context.SaveChangesAsync();
+                }
                 SignedIn = true;
                 account = LogOnModel.UserName;
                 return RedirectToPage("/Account/Index");
             }
+            else if(attempt.Count() > 0)
+            {
+                LogOnModel.FailedLogin = true;
+                _context.Add(LogOnModel);
 
-            await _context.DisposeAsync();
+            }
+
+            
+            await _context.SaveChangesAsync();
 
             return Page();
 
         }
+        
     }
 }
