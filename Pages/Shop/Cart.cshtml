@@ -25,15 +25,15 @@
             {
                 <tr align="center">
                     <td align="center">
-                        <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Product.Id">Delete</a>
+                        <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Products.ID">Delete</a>
                     </td>
-                    <td>@item.Product.Id</td>
-                    <td>@item.Product.Name</td>
-                    <td><img src="~/images/@item.Product.Photo" width="120" height="100" /></td>
-                    <td>$@item.Product.Price</td>
+                    <td>@item.Products.ID</td>
+                    <td>@item.Products.ProductName</td>
+                    <td><img src="~/images/FitComrade logo.png" width="120" height="100" /></td>
+                    <td>$@item.Products.SellPrice</td>
                     <td><input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 50px;" /></td>
                     <td>
-                        $@(item.Product.Price * item.Quantity)
+                        $@(item.Products.SellPrice * item.Quantity)
                     </td>
                 </tr>
             }

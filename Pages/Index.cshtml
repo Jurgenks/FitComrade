@@ -1,15 +1,19 @@
 ﻿@page
 @model IndexModel
 @using FitComrade.Models;
+@using FitComrade.Helpers;
 @{
     ViewData["Title"] = "Home page";
-    
+
 }
 <div class="text-center">
     <h1 class="display-4">Welkom Comrade</h1>
     <p>FitComrade is het nieuwe fitness platform.</p>
-    
+    <p>ID: @SessionHelper.myUser.SessionID</p>
+    <p>Name: @SessionHelper.myUser.UserName</p>
 </div>
+
+
 
 
 

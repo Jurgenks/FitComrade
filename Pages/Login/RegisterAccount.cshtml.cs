@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FitComrade.Data;
 using FitComrade.Models;
+using FitComrade.Helpers;
 
 namespace FitComrade.Pages.Login
 {
@@ -19,9 +20,9 @@ namespace FitComrade.Pages.Login
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return Page();
+            SessionHelper.GetSession(HttpContext.Session);
         }
 
         [BindProperty]

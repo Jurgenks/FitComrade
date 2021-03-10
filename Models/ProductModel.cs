@@ -8,43 +8,24 @@ namespace FitComrade.Models
 {
     public class ProductModel
     {
-        private List<Product> Products;
+        private readonly FitComrade.Data.FitComradeContext _context;
 
-        public ProductModel()
+        public ProductModel(FitComrade.Data.FitComradeContext context)
         {
-            Products = new List<Product>() {
-                new Product
-                {
-                    Id = "p01",
-                    Name = "name 1",
-                    Price = 4,
-                    Photo = "FitComrade logo.png"
-                },
-                new Product
-                {
-                    Id = "p02",
-                    Name = "name 2",
-                    Price = 2,
-                    Photo = "FitComrade logo.png"
-                },
-                new Product
-                {
-                    Id = "p03",
-                    Name = "name 3",
-                    Price = 8,
-                    Photo = "FitComrade logo.png"
-                }
-            };
+            _context = context;
         }
 
-        public List<Product> findAll()
+        public List<Products> Products { get; set; }
+
+        public List<Products> findAll()
         {
+            Products = _context.Products.ToList();
             return Products;
         }
 
-        public Product find(string id)
+        public Products find(int id)
         {
-            return Products.Where(p => p.Id == id).FirstOrDefault();
+            return _context.Products.Where(m => m.ID == id).FirstOrDefault();
         }
 
     }

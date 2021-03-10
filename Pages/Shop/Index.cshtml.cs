@@ -11,11 +11,16 @@ namespace FitComrade.Pages.Shop
 {
     public class IndexModel : PageModel
     {
-        public List<Product> Products;
+        public List<Products> Products;
+        private readonly FitComrade.Data.FitComradeContext _context;
 
+        public IndexModel(FitComrade.Data.FitComradeContext context)
+        {
+            _context = context;
+        }
         public void OnGet()
         {
-            ProductModel productModel = new ProductModel();
+            ProductModel productModel = new ProductModel(_context);
             Products = productModel.findAll();
         }
     }

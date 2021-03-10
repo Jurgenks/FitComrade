@@ -18,6 +18,7 @@ namespace FitComrade
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -26,9 +27,17 @@ namespace FitComrade
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddSession();
+            //services.AddSession();
             services.AddDbContext<FitComradeContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("FitComradeContext")));
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

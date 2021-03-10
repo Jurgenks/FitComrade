@@ -27,14 +27,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Shop/Index">Shop</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Shop/Cart">Winkelwagen</a>
-                        </li>
+                        
                         @{
-                            @using Login;
-                            string PageUrl;
-                            string Header;
-                            if (LoginAccountModel.SignedIn == true)
+                            @using Helpers;                            
+                            string PageUrl = "/Login/Index";
+                            string Header = "Sign In";
+                            bool IsActive = SessionHelper.myUser.Status;
+                            if (IsActive == true)
                             {
                                 PageUrl = "/Account/Index";
                                 Header = "Account";
@@ -44,7 +43,7 @@
                                 PageUrl = "/Login/Index";
                                 Header = "Sign In";
                             }
-                            
+
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page=@PageUrl>@Header</a>

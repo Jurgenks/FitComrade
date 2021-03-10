@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using FitComrade.Data;
 using FitComrade.Models;
 using FitComrade.Pages.Login;
+using FitComrade.Entities;
+using FitComrade.Helpers;
 
 namespace FitComrade.Pages.Account.ProductManager
 {
@@ -21,14 +23,28 @@ namespace FitComrade.Pages.Account.ProductManager
         }
 
         public IList<Products> Products { get;set; }
+        private string[] admins = { "Jurgen" };
 
         public async Task OnGetAsync()
         {
-            if (LoginAccountModel.account != "Jurgen")
+            bool acces = false;
+            for(int i = 0; i < admins.Length; i++)
             {
-                RedirectToPage("Account/Index");
+                if(SessionHelper.myUser.UserName == admins[i])
+                {
+                    acces = true;
+                }
+                
             }
-            Products = await _context.Products.ToListAsync();
+            if (acces == true)
+            {
+                Products = await _context.Products.ToListAsync();
+            }
+            else
+            {
+                RedirectToPage("./Index");
+            }
+            
             
             
         }

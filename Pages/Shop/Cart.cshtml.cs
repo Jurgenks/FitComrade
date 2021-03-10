@@ -12,25 +12,32 @@ namespace FitComrade.Pages.Shop
 {
     public class CartModel : PageModel
     {
+        private readonly FitComrade.Data.FitComradeContext _context;
+
+        public CartModel(FitComrade.Data.FitComradeContext context)
+        {
+            _context = context;
+        }
+
         public List<Item> cart { get; set; }
-        public double Total { get; set; }
+        public decimal Total { get; set; }
 
         public void OnGet()
         {
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            Total = cart.Sum(i => i.Product.Price * i.Quantity);
+            Total = cart.Sum(i => i.Products.SellPrice * i.Quantity);
         }
 
-        public IActionResult OnGetBuyNow(string id)
+        public IActionResult OnGetBuyNow(int id)
         {
-            var productModel = new ProductModel();
+            var productModel = new ProductModel(_context);
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             if (cart == null)
             {
                 cart = new List<Item>();
                 cart.Add(new Item
                 {
-                    Product = productModel.find(id),
+                    Products = productModel.find(id),
                     Quantity = 1
                 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -42,7 +49,7 @@ namespace FitComrade.Pages.Shop
                 {
                     cart.Add(new Item
                     {
-                        Product = productModel.find(id),
+                        Products = productModel.find(id),
                         Quantity = 1
                     });
                 }
@@ -55,7 +62,7 @@ namespace FitComrade.Pages.Shop
             return RedirectToPage("Cart");
         }
 
-        public IActionResult OnGetDelete(string id)
+        public IActionResult OnGetDelete(int id)
         {
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             int index = Exists(cart, id);
@@ -75,11 +82,11 @@ namespace FitComrade.Pages.Shop
             return RedirectToPage("Cart");
         }
 
-        private int Exists(List<Item> cart, string id)
+        private int Exists(List<Item> cart, int id)
         {
             for (var i = 0; i < cart.Count; i++)
             {
-                if (cart[i].Product.Id == id)
+                if (cart[i].Products.ID == id)
                 {
                     return i;
                 }

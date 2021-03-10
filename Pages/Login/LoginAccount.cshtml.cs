@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using FitComrade.Data;
 using FitComrade.Models;
-using Microsoft.EntityFrameworkCore;
+using FitComrade.Entities;
+using FitComrade.Helpers;
 
 namespace FitComrade.Pages.Login
 {
@@ -20,19 +17,20 @@ namespace FitComrade.Pages.Login
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return Page();
+            SessionHelper.GetSession(HttpContext.Session);
         }
 
         [BindProperty]
         public LogOnModel LogOnModel { get; set; }
-        public static bool SignedIn = false;
-        public static string account;
+        
+        
 
         
         public async Task<IActionResult> OnPostAsync()
         {
+            
             if (!ModelState.IsValid)
             {
                 
@@ -45,17 +43,23 @@ namespace FitComrade.Pages.Login
 
             if (data.Count() > 0)
             {
-                if(attempt.Count() == 0)
+                if(attempt.Count() == 0) // First succes Login
                 {
                     LogOnModel.Password = "****";
                     _context.Add(LogOnModel);
+                    SessionHelper.myUser.UserName = LogOnModel.UserName;
+                    SessionHelper.myUser.Status = true;
                     await _context.SaveChangesAsync();
                 }
-                SignedIn = true;
-                account = LogOnModel.UserName;
+                if(attempt.Count() > 0) // Succes Login ++
+                {
+                    SessionHelper.myUser.UserName = LogOnModel.UserName;
+                    SessionHelper.myUser.Status = true;
+                }
+                                                
                 return RedirectToPage("/Account/Index");
             }
-            else if(attempt.Count() > 0)
+            else if(attempt.Count() > 0) // Failed Login
             {
                 LogOnModel.FailedLogin = true;
                 _context.Add(LogOnModel);

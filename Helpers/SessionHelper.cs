@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using FitComrade.Entities;
 
 namespace FitComrade.Helpers
 {
@@ -15,5 +16,29 @@ namespace FitComrade.Helpers
             var value = session.GetString(key);
             return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
         }
+        public static void GetSession(this ISession session)
+        {
+
+            if(session.IsAvailable == true)
+            {
+                
+                if(myUser.SessionID == null)
+                {
+                    myUser.SessionID = session.Id;
+                }
+                
+            }
+            
+        }
+        public static Profile myUser = new Profile();
+        
+        
+        
+
+
+
+
+
+
     }
 }
