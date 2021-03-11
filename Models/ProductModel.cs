@@ -22,6 +22,14 @@ namespace FitComrade.Models
             Products = _context.Products.ToList();
             return Products;
         }
+        public List<Products> findProductName(string name)
+        {
+            var products = from m in _context.Products
+                           select m;
+            products = _context.Products.Where(m => m.ProductName.Contains(name));
+            Products = products.ToList(); 
+            return Products;
+        }
 
         public Products find(int id)
         {
