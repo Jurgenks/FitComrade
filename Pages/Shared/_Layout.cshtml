@@ -6,11 +6,12 @@
     <title>@ViewData["Title"] - FitComrade</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/SlideShow.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+            <div class="container">                
                 <a class="navbar-brand" asp-area="" asp-page="/Index">FitComrade</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -21,15 +22,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/People/Index">People</a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Shop/Index">Shop</a>
                         </li>
-                        
+
                         @{
-                            @using Helpers;                            
+                            @using Helpers;
                             string PageUrl = "/Login/Index";
                             string Header = "Sign In";
                             bool IsActive = SessionHelper.myUser.Status;
@@ -48,9 +47,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page=@PageUrl>@Header</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Login/Logout">Log uit</a>
-                        </li>
+                        @{if(IsActive == true)
+                            {
+                              <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Login/Logout">Log Out</a>
+                              </li>  
+                            }
+                        }
+
                     </ul>
                 </div>
             </div>

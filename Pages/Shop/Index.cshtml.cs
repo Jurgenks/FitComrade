@@ -24,12 +24,12 @@ namespace FitComrade.Pages.Shop
         public void OnGet()
         {
             ProductModel productModel = new ProductModel(_context);
-            Products = productModel.findAll();
+            Products = productModel.FindAll();
 
             
             if (!string.IsNullOrEmpty(SearchString))
             {
-                Products = productModel.findProductName(SearchString);
+                Products = productModel.FindProductName(SearchString);
             }
             
         }

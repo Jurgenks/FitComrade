@@ -37,7 +37,7 @@ namespace FitComrade.Pages.Shop
                 cart = new List<Item>();
                 cart.Add(new Item
                 {
-                    Products = productModel.find(id),
+                    Products = productModel.Find(id),
                     Quantity = 1
                 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -49,7 +49,7 @@ namespace FitComrade.Pages.Shop
                 {
                     cart.Add(new Item
                     {
-                        Products = productModel.find(id),
+                        Products = productModel.Find(id),
                         Quantity = 1
                     });
                 }
