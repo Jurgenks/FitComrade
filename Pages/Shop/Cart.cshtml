@@ -9,23 +9,23 @@
 </head>
 <body>
 
-    <h3>Cart</h3>
+    <h3>Winkelmand</h3>
     <form method="post" asp-page="cart" asp-page-handler="update">
         <table class="table">
             <tr>
-                <th>Action</th>
-                <th>Id</th>
-                <th>Name</th>
+                <th></th>
+                <th>ArtikelNr.</th>
+                <th>Product</th>
                 <th>Photo</th>
-                <th>Price</th>
-                <th>Quantity <input type="submit" value="Update" /></th>
-                <th>Sub Total</th>
+                <th>Prijs</th>
+                <th>Aantal <input type="submit" value="Update" /></th>
+                <th>Totaalprijs</th>
             </tr>
             @foreach (var item in Model.cart)
             {
                 <tr align="center">
                     <td align="center">
-                        <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Products.ID">Delete</a>
+                        <a asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Products.ID">Verwijder</a>
                     </td>
                     <td>@item.Products.ID</td>
                     <td>@item.Products.ProductName</td>
@@ -38,12 +38,12 @@
                 </tr>
             }
             <tr>
-                <td colspan="6" align="right">Total</td>
+                <td colspan="6" align="right">Totaal</td>
                 <td align="center">$@Model.Total</td>
             </tr>
         </table>
     </form>
-    <a asp-page="index">Continue Shopping</a>
+    <a asp-page="index">Doorgaan met winkelen</a>
 
 </body>
 </html>
