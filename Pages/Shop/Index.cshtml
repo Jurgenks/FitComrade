@@ -12,10 +12,11 @@
     <h3>Producten</h3>
     <form>
         <p>
-             Zoek Product: <input type="text" asp-for="SearchString"/>
+            Zoek Product: <input type="text" asp-for="SearchString" />
             <input type="submit" value="Filter" />
         </p>
     </form>
+    
     <table class="table">
         <tr>
             <th>Nr.</th>
@@ -23,21 +24,23 @@
             <th>Foto</th>
             <th>Category</th>
             <th>Prijs</th>
+            <th>Voorraad</th>
             <th></th>
 
         </tr>
         @foreach (var product in Model.Products)
         {
-    <tr>
-        <td>@product.ID</td>
-        <td>@product.ProductName</td>
-        <td><img src="~/images/FitComrade logo.png" width="100" height="100" /></td>
-        <td>@product.Category</td>
-        <td>$@product.SellPrice</td>
-        <td>
-            <a asp-page="cart" asp-page-handler="buynow" asp-route-id="@product.ID">Bestel</a>
-        </td>
-    </tr>
+            <tr>
+                <td>@product.ID</td>
+                <td>@product.ProductName</td>
+                <td><img src="~/images/FitComrade logo.png" width="100" height="100" /></td>
+                <td>@product.Category</td>
+                <td>€@product.SellPrice</td>
+                <td>@product.Store</td>
+                <td>
+                    <a asp-page="cart" asp-page-handler="buynow" asp-route-id="@product.ID">Bestel</a>
+                </td>
+            </tr>
         }
     </table>
 

@@ -13,6 +13,6 @@ namespace FitComrade.Entities
         public string UserName { get; set; }
         public long ShoppingCartId { get; set; }
         public bool Status { get; set; }
-
+        public bool Blocked { get; set; }
     }
 }

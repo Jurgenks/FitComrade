@@ -20,6 +20,7 @@ namespace FitComrade.Pages.Login
         public void OnGet()
         {
             SessionHelper.GetSession(HttpContext.Session);
+            
         }
 
         [BindProperty]
@@ -31,12 +32,12 @@ namespace FitComrade.Pages.Login
         public async Task<IActionResult> OnPostAsync()
         {
             
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || SessionHelper.myUser.Blocked == true)
             {
                 
                 return Page();
             }
-
+            
             var attempt = _context.LogOnModel.Where(s => s.UserName.Equals(LogOnModel.UserName)).ToList();
             
             var data = _context.RegisterModel.Where(s => s.UserName.Equals(LogOnModel.UserName) && s.Password.Equals(LogOnModel.Password)).ToList();
@@ -61,8 +62,18 @@ namespace FitComrade.Pages.Login
             }
             else if(attempt.Count() > 0) // Failed Login
             {
-                LogOnModel.FailedLogin = true;
-                _context.Add(LogOnModel);
+                var falseLogin = _context.LogOnModel.Where(s => s.FailedLogin.Equals(true) && s.UserName.Equals(LogOnModel.UserName));
+                if(falseLogin.Count() > 8)
+                {
+                    SessionHelper.myUser.Blocked = true;
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                    LogOnModel.FailedLogin = true;
+                    _context.Add(LogOnModel);
+                }
+                
 
             }
 

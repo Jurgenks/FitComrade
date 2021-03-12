@@ -179,8 +179,5 @@ C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWeb
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Account\ProductManager\Edit.cshtml.g.cs
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Account\ProductManager\Index.cshtml.g.cs
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Login\Logout.cshtml.g.cs
-C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Shop\Apparatuur\Index.cshtml.g.cs
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Shop\Index.cshtml.g.cs
-C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Shop\Supplementen\Index.cshtml.g.cs
-C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Shop\Supplementen\Voorraad.cshtml.g.cs
 C:\Users\jurge\Documents\MEGAsync\Laptop\Fontys\Semester 2\Project\FitComradeWebshop\FitComrade\obj\Debug\netcoreapp3.1\Razor\Pages\Shop\Cart.cshtml.g.cs
