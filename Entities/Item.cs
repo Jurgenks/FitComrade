@@ -8,6 +8,7 @@ namespace FitComrade.Entities
 {
     public class Item
     {
+        public int ID { get; set; }
         public Products Products { get; set; }
 
         public int Quantity { get; set; }

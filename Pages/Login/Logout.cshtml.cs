@@ -14,7 +14,7 @@ namespace FitComrade.Pages.Login
 
         public IActionResult OnPost()
         {
-
+            SessionHelper.myUser.UserName = null;
             SessionHelper.myUser.Status = false;
             return RedirectToPage("/Login/Index");
         }

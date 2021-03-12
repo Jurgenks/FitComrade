@@ -29,9 +29,7 @@ namespace FitComrade.Data
 
         public DbSet<FitComrade.Models.Order> Orders { get; set; }
 
-        public DbSet<FitComrade.Models.Cart> Carts { get; set; }
-
-        public DbSet<FitComrade.Models.OrderDetail> OrderDetails { get; set; }
+        public DbSet<FitComrade.Models.Cart> Carts { get; set; }        
 
         public DbSet<FitComrade.ViewModels.ShoppingCartViewModel> ShoppingCartViewModel { get; set; }
 
