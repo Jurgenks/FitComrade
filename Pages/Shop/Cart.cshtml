@@ -33,13 +33,13 @@
                     <td>$@item.Products.SellPrice</td>
                     <td><input type="number" name="quantities" value="@item.Quantity" min="1" style="width: 50px;" /></td>
                     <td>
-                        $@(item.Products.SellPrice * item.Quantity)
+                        €@(item.Products.SellPrice * item.Quantity)
                     </td>
                 </tr>
             }
             <tr>
                 <td colspan="6" align="right">Totaal</td>
-                <td align="center">$@Model.Total</td>
+                <td align="center">€@Model.Total</td>
                 <td>
                     <a asp-page="Checkout">Betaal</a>
                 </td>

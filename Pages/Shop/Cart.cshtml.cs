@@ -25,7 +25,13 @@ namespace FitComrade.Pages.Shop
         public void OnGet()
         {
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            Total = cart.Sum(i => i.Products.SellPrice * i.Quantity);
+            decimal itemTotal;
+            Total = 0;
+            foreach (var item in cart)
+            {
+                itemTotal = cart.Sum(i => i.Products.SellPrice * i.Quantity);
+                Total = +itemTotal;
+            }
         }
 
         public IActionResult OnGetBuyNow(int id)
@@ -41,6 +47,7 @@ namespace FitComrade.Pages.Shop
                     Quantity = 1
                 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                SessionHelper.myUser.ShoppingCart = cart;
             }
             else
             {
@@ -58,27 +65,32 @@ namespace FitComrade.Pages.Shop
                     cart[index].Quantity++;
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                SessionHelper.myUser.ShoppingCart = cart;
             }
             return RedirectToPage("Cart");
         }
 
         public IActionResult OnGetDelete(int id)
         {
-            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            //cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            cart = SessionHelper.myUser.ShoppingCart;
             int index = Exists(cart, id);
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            
             return RedirectToPage("Cart");
         }
 
         public IActionResult OnPostUpdate(int[] quantities)
         {
-            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            //cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            cart = SessionHelper.myUser.ShoppingCart;
             for (var i = 0; i < cart.Count; i++)
             {
                 cart[i].Quantity = quantities[i];
             }
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            
             return RedirectToPage("Cart");
         }
 

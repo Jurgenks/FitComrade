@@ -21,23 +21,82 @@ namespace FitComrade.Pages.Shop
 
         public List<Item> cart { get; set; }
         public decimal Total { get; set; }
-
+        private decimal discount = 1;
         [BindProperty]
         public Order Order { get; set; }
+        
+        
 
         public void OnGet()
         {
-            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            Total = cart.Sum(i => i.Products.SellPrice * i.Quantity);
+            cart = SessionHelper.myUser.ShoppingCart;
+            decimal itemTotal;
+            Total = 0;
+            if(cart != null)
+            {
+                foreach (var item in cart.Where(item => item != null))
+                {
+                    itemTotal = cart.Sum(i => i.Products.SellPrice * i.Quantity);
+                    Total = +itemTotal;
+                }
+            }
+            
+
+
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
-            Order.Items = cart;
+            cart = SessionHelper.myUser.ShoppingCart;
+            decimal itemTotal;
+            Total = 0;
+            if (cart != null)
+            {
+                foreach (var item in cart.Where(item => item != null))
+                {
+                    itemTotal = cart.Sum(i => i.Products.SellPrice * i.Quantity);
+                    Total = +itemTotal;
+                }
+            }
+
+            Order.Paid = true;
             Order.TotalPrice = Total;
+            Order.OrderDate = DateTime.Now;
+            Order.Username = SessionHelper.myUser.UserName;
+
+            
+            
+            _context.Orders.Add(Order);
+            _context.SaveChanges();
+            if (Order.Paid == true)
+            {
+                
+                int id = Order.ID;
+                if (cart != null)
+                {
+                    foreach (var item in cart.Where(item => item != null))
+                    {
+                        _context.OrderDetails.Add(new OrderDetail
+                        {
+                            OrderID = id,
+                            ProductID = item.Products.ID,
+                            OrderNumber = _context.Orders.Count(),
+                            Price = item.Products.SellPrice,
+                            Quantity = item.Quantity,
+                            Discount = discount,
+                            Total = item.Products.SellPrice * item.Quantity * discount,
+                            BillDate = DateTime.Now,
+                        });
+
+                    }
+                }
+
+            }
+
+            
             await _context.SaveChangesAsync();
             return RedirectToPage("/Index");
         }

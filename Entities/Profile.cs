@@ -11,7 +11,7 @@ namespace FitComrade.Entities
         public int LoginID { get; set; }
         public string SessionID { get; set; }
         public string UserName { get; set; }
-        public long ShoppingCartId { get; set; }
+        public List<Item> ShoppingCart { get; set; }
         public bool Status { get; set; }
         public bool Blocked { get; set; }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FitComrade.Models;
-using FitComrade.ViewModels;
+
 
 namespace FitComrade.Data
 {
@@ -29,9 +29,10 @@ namespace FitComrade.Data
 
         public DbSet<FitComrade.Models.Order> Orders { get; set; }
 
-        public DbSet<FitComrade.Models.Cart> Carts { get; set; }        
+        public DbSet<FitComrade.Models.OrderDetail> OrderDetails { get; set; }
+             
 
-        public DbSet<FitComrade.ViewModels.ShoppingCartViewModel> ShoppingCartViewModel { get; set; }
+        
 
 
     }
