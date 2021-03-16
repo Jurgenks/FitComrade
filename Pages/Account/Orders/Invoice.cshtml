@@ -1,0 +1,44 @@
+﻿@page
+@model FitComrade.Pages.Account.Orders.IndexModel
+
+@{
+    ViewData["Title"] = "Invoice";
+}
+
+<h1>Bestellingen</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                Bestelling Nr.
+            </td>
+            <td>
+                Datum
+            </td>
+            <td>
+                Prijs
+            </td>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ID">Factuur</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

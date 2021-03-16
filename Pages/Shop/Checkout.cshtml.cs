@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using FitComrade.Entities;
 using FitComrade.Models;
 using FitComrade.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitComrade.Pages.Shop
 {
@@ -44,7 +45,7 @@ namespace FitComrade.Pages.Shop
 
 
         }
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync() // Betalen
         {
             if (!ModelState.IsValid)
             {
@@ -62,10 +63,10 @@ namespace FitComrade.Pages.Shop
                 }
             }
 
-            Order.Paid = true;
+            Order.Paid = true;  //Fake Payment
             Order.TotalPrice = Total;
             Order.OrderDate = DateTime.Now;
-            Order.Username = SessionHelper.myUser.UserName;
+            Order.Username = SessionHelper.myUser.UserName; //Als gebruiker is ingelogd
 
             
             
@@ -90,7 +91,10 @@ namespace FitComrade.Pages.Shop
                             Total = item.Products.SellPrice * item.Quantity * discount,
                             BillDate = DateTime.Now,
                         });
+                        item.Products.Store = item.Products.Store - item.Quantity;
+                        _context.Attach(item.Products).State = EntityState.Modified;
 
+                        
                     }
                 }
 
