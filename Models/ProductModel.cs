@@ -17,12 +17,12 @@ namespace FitComrade.Models
 
         public List<Products> Products { get; set; }
 
-        public List<Products> FindAll()
+        public List<Products> FindAll() // Ontvang alle Producten uit database
         {
             Products = _context.Products.ToList();
             return Products;
         }
-        public List<Products> FindProductName(string name)
+        public List<Products> FindProductName(string name) // Ontvang de benaming van ieder product
         {
             var products = from m in _context.Products
                            select m;
@@ -31,7 +31,7 @@ namespace FitComrade.Models
             return Products;
         }
 
-        public Products Find(int id)
+        public Products Find(int id) // Haal het gevraagde product op
         {
             return _context.Products.Where(m => m.ID == id).FirstOrDefault();
         }

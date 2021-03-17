@@ -24,17 +24,18 @@ namespace FitComrade.Pages.Account.Orders
         public List<OrderDetail> OrderDetail;
         public List<Products> Products;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id) // Haalt OrderDetails op met specifiek id
         {
-            if (id == null)
+            if (id == null) // Er is geen order met het specifieke id
             {
                 return NotFound();
             }
+
             OrderDetail = _context.OrderDetails.Where(m => m.OrderID.Equals(id)).ToList();
-            Products = _context.Products.ToList();
+            Products = _context.Products.ToList(); 
             Order = await _context.Orders.FirstOrDefaultAsync(m => m.ID == id);
             
-            if (Order == null)
+            if (Order == null) // Er zijn geen orders
             {
                 return NotFound();
             }

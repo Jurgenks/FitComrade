@@ -21,18 +21,15 @@ namespace FitComrade.Pages.Account.Orders
         }
 
         public List<Order> Order { get;set; }
-
-        public async Task OnGetAsync()
+        
+        public async Task OnGetAsync() //Bij bezoek van pagina worden de orders van de gebruiker opgehaald
         {
             var data = _context.Orders.Where(m => m.Username.Equals(SessionHelper.myUser.UserName));
             if (data.Count() > 0 && SessionHelper.myUser.UserName != null)
             {
                 Order = await data.ToListAsync();
             }
-            else
-            {
-                RedirectToPage("Account/Index");
-            }
+            
             
         }
     }

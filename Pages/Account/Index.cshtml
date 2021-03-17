@@ -2,17 +2,22 @@
 @model FitComrade.Pages.Account.IndexModel
 @{
     ViewData["Title"] = "Account";
+    @using Helpers;
     
 }
 <body>
     <h2>Welkom</h2>
 
-    
-        
-        <h3><a asp-page="Orders/Invoice">Bestellingen</a></h3>
-    
-        <h3><a asp-page="ProductManager/Index">ProductManager</a></h3>
-    
+
+
+    <h3><a asp-page="Orders/Invoice">Bestellingen</a></h3>
+    @{ if (SessionHelper.myUser.UserName == "Jurgen")
+        {
+            <h3><a asp-page="ProductManager/Index">ProductManager</a></h3>
+        }
+    }
+
+
 
 </body>
 
